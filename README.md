@@ -14,8 +14,8 @@ Get Telegram notifications when Claude Code needs your attention or completes a 
 
 ## Prerequisites
 
-- macOS with [Homebrew](https://brew.sh)
-- `jq` and `curl` installed (`brew install jq curl`)
+- macOS or Linux
+- `jq` and `curl` installed (`brew install jq curl` or `apt install jq curl`)
 - [Claude Code](https://claude.com/claude-code) CLI installed
 - A Telegram account
 

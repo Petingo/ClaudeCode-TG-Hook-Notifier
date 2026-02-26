@@ -16,6 +16,15 @@ ok()    { printf "${GREEN}[OK]${NC} %s\n" "$1"; }
 warn()  { printf "${YELLOW}[WARN]${NC} %s\n" "$1"; }
 error() { printf "${RED}[ERROR]${NC} %s\n" "$1" >&2; }
 
+# --- Cross-platform sed in-place ---
+sed_inplace() {
+  if sed --version &>/dev/null; then
+    sed -i "$@"    # GNU sed (Linux)
+  else
+    sed -i '' "$@" # BSD sed (macOS)
+  fi
+}
+
 # --- Find jq ---
 find_jq() {
   if [[ -x /opt/homebrew/bin/jq ]]; then
@@ -120,9 +129,9 @@ main() {
     if grep -q 'CLAUDE_HOOK_TG_BOT_TOKEN' "$RC_FILE" 2>/dev/null; then
       read -rp "Remove Telegram credentials from $RC_FILE? [y/N]: " CLEAN_RC
       if [[ "$CLEAN_RC" == "y" || "$CLEAN_RC" == "Y" ]]; then
-        sed -i '' '/# Claude Code — Telegram Hook/d' "$RC_FILE"
-        sed -i '' '/CLAUDE_HOOK_TG_BOT_TOKEN/d' "$RC_FILE"
-        sed -i '' '/CLAUDE_HOOK_TG_CHAT_ID/d' "$RC_FILE"
+        sed_inplace '/# Claude Code — Telegram Hook/d' "$RC_FILE"
+        sed_inplace '/CLAUDE_HOOK_TG_BOT_TOKEN/d' "$RC_FILE"
+        sed_inplace '/CLAUDE_HOOK_TG_CHAT_ID/d' "$RC_FILE"
         ok "Credentials removed from $RC_FILE"
         cleaned_rc=1
       fi
