@@ -2,6 +2,10 @@
 
 Get Telegram notifications when Claude Code needs your attention or completes a task. No more staring at the terminal waiting.
 
+<p align="center">
+  <img src="img/demo.png" alt="Telegram notification demo" width="400">
+</p>
+
 ## What You Get
 
 - **Permission Required** — Claude needs approval for a tool (e.g., Bash, file edit)
@@ -59,8 +63,8 @@ CLAUDE_HOOK_TG_CHAT_ID=project-specific-chat-id
 ### 4. Install the Hook
 
 ```bash
-git clone https://github.com/your-username/ClaudeCode-TG-Hook.git
-cd ClaudeCode-TG-Hook
+git clone https://github.com/stevenyu113228/ClaudeCode-TG-Hook-Notifier.git
+cd ClaudeCode-TG-Hook-Notifier
 ./install.sh
 ```
 
